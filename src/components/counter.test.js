@@ -35,4 +35,18 @@ describe("Counter Tests", () => {
           const countElmnt = screen.getByRole("heading");
           expect(countElmnt).toHaveTextContent("1");
      });
+
+     // dblClick
+     
+     test("renders count of 2 when user clicks on INCREMENT button twice", async () => {
+          const user = userEvent.setup();
+          render(<Counter />)
+          const incrBtnElm = screen.getByRole("button", {
+               name: "INCREMENT"
+          });
+          await user.dblClick(incrBtnElm);
+          const countDivElm = screen.getByRole("heading");
+          expect(countDivElm).toHaveTextContent("2");
+     });
+
 })
