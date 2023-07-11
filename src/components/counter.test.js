@@ -1,7 +1,6 @@
 import {render, screen} from "@testing-library/react"
 import { Counter } from "./Counter"
 import userEvent from '@testing-library/user-event'
-import "./Counter"
 
 describe("Counter Tests", () => {
 
