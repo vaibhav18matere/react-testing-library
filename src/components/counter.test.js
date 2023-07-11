@@ -64,4 +64,22 @@ describe("Counter Tests", () => {
           const setAmountElm = screen.getByRole("heading");
           expect(setAmountElm).toHaveTextContent("10")
      });
+
+          test("elements are focused in the right order when pressed tab key", async () => {
+          const user = userEvent.setup();
+          render(<Counter/>)
+
+          const incrmBtn = screen.getByRole("button", {name:"INCREMENT"});
+          const inptBoxElm = screen.getByRole("spinbutton");
+          const setAmntElm = screen.getByRole("button", { name: "Set Amount" });
+
+          await user.tab();
+          expect(incrmBtn).toHaveFocus();
+
+          await user.tab();
+          expect(inptBoxElm).toHaveFocus();
+
+          await user.tab();
+          expect(setAmntElm).toHaveFocus();
+     });
 })
