@@ -48,4 +48,20 @@ describe("Counter Tests", () => {
           expect(countDivElm).toHaveTextContent("2");
      });
 
+     test("renders count of 10 after clicking on set button", async () => {
+          const user = userEvent.setup();
+          render(<Counter />)
+          const amountInputElm = screen.getByRole("spinbutton");
+          // for input of type="number", role is spinbutton and not typebox
+          await user.type(amountInputElm, "10");
+          expect(amountInputElm).toHaveValue(10);
+
+          const setBtnElm = screen.getByRole("button", {
+               name: "Set Amount"
+          });
+
+          await user.click(setBtnElm);
+          const setAmountElm = screen.getByRole("heading");
+          expect(setAmountElm).toHaveTextContent("10")
+     });
 })
